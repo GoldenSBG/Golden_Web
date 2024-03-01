@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Golden_SBG</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #000;
+      color: #fff;
+      overflow-y: scroll;
+    }
+    header {
+      display: none;
+    }
+    main {
+      max-width: 800px;
+      margin: 20px auto;
+      padding: 20px;
+      background-color: #000;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+      position: relative;
+    }
+    h2, h3, h4, h5, p, ul {
+      background: linear-gradient(90deg, #BE1BF7, #ADF3FD);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .light-point {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      pointer-events: none;
+      opacity: 0;
+      animation: light-point-animation 3s infinite;
+    }
+    footer {
+      text-align: center;
+      padding: 10px;
+      background-color: #000;
+      color: #fff;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      z-index: 9999;
+    }
+    
+    .navbar {
+      display: flex;
+      justify-content: space-around;
+    }
+    
+    .navbar a {
+      color: #fff;
+      text-decoration: none;
+      padding: 10px;
+      transition: color 0.3s ease;
+    }
+    
+    .navbar a:hover {
+      color: #BE1BF7;
+    }
+
+    @keyframes light-point-animation {
+      0% {
+        opacity: 0;
+        transform: scale(0);
+      }
+      50% {
+        opacity: 1;
+      }
+      100% {
+        opacity: 0;
+        transform: scale(1);
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="light-point"></div>
+    <div class="light-point"></div>
+    <div class="light-point"></div>
+    <div class="light-point"></div>
+  </main>
+    <footer>  
+      <nav class="navbar">
+        <a href="#"></a>
+        <a href="index.html">Back</a>
+        <a href="#"></a>
+      </nav>
+    </footer>
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      const lightPoints = document.querySelectorAll('.light-point');
+      lightPoints.forEach((point) => {
+        animateLightPoint(point);
+      });
+    });
+    
+    function animateLightPoint(point) {
+      const width = window.innerWidth;
+      const height = window.innerHeight;
+      
+      const x = getRandomNumber(0, width);
+      const y = getRandomNumber(0, height);
+      
+      const duration = getRandomNumber(800, 1500);
+      const size = getRandomNumber(5, 20);
+      const color = getRandomColor();
+      
+      point.style.left = `${x}px`;
+      point.style.top = `${y}px`;
+      point.style.animationDuration = `${duration}ms`;
+      point.style.width = `${size}px`;
+      point.style.height = `${size}px`;
+      point.style.backgroundColor = color;
+      
+      setTimeout(() => {
+        animateLightPoint(point);
+      }, duration);
+    }
+    
+    function getRandomNumber(min, max) {
+      return Math.floor(Math.random() * (max - min + 1) + min);
+    }
+    
+    function getRandomColor() {
+      const letters = '0123456789ABCDEF';
+      let color = '#';
+      for (let i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+      }
+      return color;
+    }
+  </script>
+</body>
+</html>

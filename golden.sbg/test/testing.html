@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Partnerschaftsseite</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow: auto;
+        }
+        
+        #galaxy {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #000;
+            z-index: -1;
+        }
+        
+        .light-particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background-color: #8C3DA6;
+            border-radius: 50%;
+            animation: blink 1s infinite;
+        }
+        
+        @keyframes blink {
+            0%, 50% {
+                opacity: 1;
+            }
+            50.1%, 100% {
+                opacity: 0;
+            }
+        }
+        
+        .partnership-card {
+            background-color: #0000002;
+            border-radius: 5px;
+            padding: 20px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .partner-logo {
+            max-width: 200px;
+            margin-bottom: 10px;
+        }
+        
+        .partner-name {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        
+        .partner-description {
+            font-size: 18px;
+            color: #777;
+            margin-top: 10px;
+        }
+        
+        .partner-info {
+            margin-top: 20px;
+            font-size: 16px;
+            color: #555;
+        }
+    </style>
+    <script>
+        // JavaScript code to dynamically create light particles with random colors
+        document.addEventListener("DOMContentLoaded", function() {
+            const galaxy = document.getElementById("galaxy");
+            const colors = ["#8C3DA6", "#00FFFF"]; // Colors between Lila and Türkis
+            const numParticles = 200;
+            
+            for (let i = 0; i < numParticles; i++) {
+                const lightParticle = document.createElement("div");
+                lightParticle.classList.add("light-particle");
+                lightParticle.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                lightParticle.style.top = Math.random() * 100 + "%";
+                lightParticle.style.left = Math.random() * 100 + "%";
+                lightParticle.style.animationDelay = Math.random() * 5 + "s";
+                galaxy.appendChild(lightParticle);
+            }
+        });
+    </script>
+</head>
+<body>
+    <div id="galaxy"></div>
+    
+    <div class="partnership-card">
+        <img class="partner-logo" src="bilder/Atramis.png" alt="Partner">
+        <h2 class="partner-name">Partnername</h2>
+        <p class="partner-description">Eine kurze Beschreibung des Partners und der Partnerschaft.</p>
+        <div class="partner-info">
+            <a herf="https://atramis.de">Website</a>
+        </div>
+    </div>
+
+    <div class="partnership-card">
+        <img class="partner-logo" src="bilder/Atramis.png" alt="Partner">
+        <h2 class="partner-name">Partnername</h2>
+        <p class="partner-description">Eine kurze Beschreibung des Partners und der Partnerschaft.</p>
+        <div class="partner-info">
+            <a herf="https://atramis.de">Website</a>
+        </div>
+    </div>
+    <div class="partnership-card">
+        <img class="partner-logo" src="bilder/Atramis.png" alt="Partner">
+        <h2 class="partner-name">Partnername</h2>
+        <p class="partner-description">Eine kurze Beschreibung des Partners und der Partnerschaft.</p>
+        <div class="partner-info">
+            <a herf="https://atramis.de">Website</a>
+        </div>
+    </div>
+
+    <div class="partnership-card">
+        <img class="partner-logo" src="bilder/Atramis.png" alt="Partner">
+        <h2 class="partner-name">Partnername</h2>
+        <p class="partner-description">Eine kurze Beschreibung des Partners und der Partnerschaft.</p>
+        <div class="partner-info">
+            <a herf="https://atramis.de">Website</a>
+        </div>
+    </div>
+    <!-- Hier weitere Inhalte einfügen -->
+    
+    <script>
+        // JavaScript-Code für die Interaktion
+        // Hier können weitere Funktionen oder Anpassungen hinzugefügt werden
+        // z.B. Interaktion mit den Karten, Laden von Daten usw.
+    </script>
+</body>
+</html>

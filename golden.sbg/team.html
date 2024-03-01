@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Team</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow: auto;
+        }
+        
+        #galaxy {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #000;
+            z-index: -1;
+        }
+        
+        .light-particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background-color: #8C3DA6;
+            border-radius: 50%;
+            animation: blink 1s infinite;
+        }
+        
+        @keyframes blink {
+            0%, 50% {
+                opacity: 1;
+            }
+            50.1%, 100% {
+                opacity: 0;
+            }
+        }
+        
+        .team-card {
+            background-color: 0000002;
+            border-radius: 5px;
+            padding: 20px;
+            margin-bottom: 20px;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+        
+        .team-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .team-logo {
+            max-width: 200px;
+            margin-bottom: 10px;
+        }
+        
+        .team-name {
+            font-size: 24px;
+            font-weight: bold;
+            color: #7691d6;
+        }
+        
+        .team-description {
+            font-size: 18px;
+            color: #7691d6;
+            margin-top: 10px;
+        }
+        
+        .team-info {
+            margin-top: 20px;
+            font-size: 16px;
+            color: #555;
+        }
+        
+        .team-card:hover {
+            outline: none;
+            animation: outlineAnim 2s infinite;
+        }
+        
+        .team-logo:hover {
+            outline: none;
+            animation: outlineAnim 2s infinite;
+        }
+        
+        @keyframes outlineAnim {
+            0% {
+                outline-color: #8C3DA6;
+                outline-width: 0;
+            }
+            50% {
+                outline-color: #00FFFF;
+                outline-width: 10px;
+            }
+            100% {
+                outline-color: #8C3DA6;
+                outline-width: 0;
+            }
+        }
+
+        .footer a {
+            color: rgb(99, 64, 113);
+            text-decoration: none;
+            font-weight: bold;
+            display: table;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    </style>
+    <script>
+        // JavaScript code to dynamically create light particles with random colors
+        document.addEventListener("DOMContentLoaded", function() {
+            const galaxy = document.getElementById("galaxy");
+            const colors = ["#8C3DA6", "#00FFFF"]; // Colors between Lila and Türkis
+            const numParticles = 200;
+            
+            for (let i = 0; i < numParticles; i++) {
+                const lightParticle = document.createElement("div");
+                lightParticle.classList.add("light-particle");
+                lightParticle.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                lightParticle.style.top = Math.random() * 100 + "%";
+                lightParticle.style.left = Math.random() * 100 + "%";
+                lightParticle.style.animationDelay = Math.random() * 5 + "s";
+                galaxy.appendChild(lightParticle);
+            }
+        });
+        
+        // JavaScript code for interaction
+        let visibleCards = [];
+
+        window.addEventListener("scroll", function() {
+            const teamCards = document.querySelectorAll(".team-card");
+            
+            teamCards.forEach(function(card) {
+                if (isElementInViewport(card) && !visibleCards.includes(card)) {
+                    card.classList.add("visible");
+                    visibleCards.push(card);
+                } else if (!isElementInViewport(card) && visibleCards.includes(card)) {
+                    card.classList.remove("visible");
+                    const index = visibleCards.indexOf(card);
+                    visibleCards.splice(index, 1);
+                }
+            });
+        });
+
+        function isElementInViewport(element) {
+            const rect = element.getBoundingClientRect();
+            return (
+                rect.top >= 0 &&
+                rect.left >= 0 &&
+                rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+                rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+            );
+        }
+
+    </script>
+</head>
+<body>
+    <div id="galaxy"></div>
+    
+    <div class="team-card">
+        <img class="team-logo" src="bilder/klapperbw.png" alt="team">
+        <h2 class="team-name">KlapperBW</h2>
+        <p class="team-description">Ich designe Thumbnail für KlapperBW</p>
+        <div class="team-info">
+            <a href="https://twitch.tv/klapperbw">Visit</a>
+        </div>
+    </div>
+    
+    <div class="team-card">
+        <img class="team-logo" src="https://static-cdn.jtvnw.net/jtv_user_pictures/f020f8ec-7cf6-4c9b-a59c-21886bd22f05-profile_image-150x150.png" alt="team">
+        <h2 class="team-name">Jakobnow</h2>
+        <p class="team-description">Cutter</p>
+        <p class="team-description">Cutter von Golden_SBG</p>
+        <div class="team-info">
+            <a href="https://m.twitch.tv/jakobnowbw/home">Visit</a>
+        </div>
+    </div>
+    
+    <footer>
+        <div class="footer">
+            <a href="Plattforms.html">Back</a>
+        </div>
+    </footer>
+</body>
+</html>

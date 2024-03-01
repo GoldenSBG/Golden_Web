@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Epic Error Page</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+        
+        #galaxy {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #000;
+            z-index: -1;
+        }
+        
+        #error-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: calc(100vh - 50px); /* Adjusted */
+            color: white;
+            font-family: 'Arial', sans-serif;
+            font-size: 24px;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+        
+        #error-container h1 {
+            font-size: 48px;
+            margin-bottom: 30px;
+        }
+        
+        #error-animation {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+        
+        .light-particle {
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            opacity: 0.8;
+            animation: flicker 2s linear infinite;
+        }
+        
+        @keyframes flicker {
+            0% {
+                opacity: 0;
+                transform: translate(-10px, -10px);
+            }
+            50% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+                transform: translate(110vw, 110vh);
+            }
+        }
+        
+        footer {
+            background-color: #000;
+            padding: 10px;
+            text-align: center;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+        }
+        
+        footer a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+    </style>
+    <script>
+        // JavaScript code to dynamically create light particles with random colors
+        document.addEventListener("DOMContentLoaded", function() {
+            const container = document.getElementById("error-animation");
+            const colors = ["#8C3DA6", "#00FFFF"]; // Colors between Lila and Türkis
+            const numParticles = 100;
+            
+            for (let i = 0; i < numParticles; i++) {
+                const lightParticle = document.createElement("div");
+                lightParticle.classList.add("light-particle");
+                lightParticle.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                lightParticle.style.top = Math.random() * 110 + "%";
+                lightParticle.style.left = Math.random() * 110 + "%";
+                lightParticle.style.animationDelay = Math.random() * 5 + "s";
+                container.appendChild(lightParticle);
+            }
+        });
+    </script>
+</head>
+<body>
+    <div id="galaxy"></div>
+    <div id="error-container">
+        <div>
+            <h1>Oops! Something went wrong.</h1>
+            <p>This website is still under development</p>
+        </div>
+        <div id="error-animation"></div>
+    </div>
+    <footer>
+        <a href="index.html">Back</a>
+    </footer>
+</body>
+</html>

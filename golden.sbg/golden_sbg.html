@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Plattforms</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow: auto;
+        }
+        
+        #galaxy {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #000;
+            z-index: -1;
+        }
+        
+        .light-particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background-color: #8C3DA6;
+            border-radius: 50%;
+            animation: blink 1s infinite;
+        }
+        
+        @keyframes blink {
+            0%, 50% {
+                opacity: 1;
+            }
+            50.1%, 100% {
+                opacity: 0;
+            }
+        }
+        
+        .linktree-card {
+            background-color: 0000002;
+            border-radius: 5px;
+            padding: 20px;
+            margin-bottom: 20px;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+        
+        .linktree-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .linktree-logo {
+            max-width: 200px;
+            margin-bottom: 10px;
+        }
+        
+        .linktree-name {
+            font-size: 24px;
+            font-weight: bold;
+            color: #7691d6;
+        }
+        
+        .linktree-description {
+            font-size: 18px;
+            color: #7691d6;
+            margin-top: 10px;
+        }
+        
+        .linktree-info {
+            margin-top: 20px;
+            font-size: 16px;
+            color: #555;
+        }
+        
+        .linktree-card:hover {
+            outline: none;
+            animation: outlineAnim 2s infinite;
+        }
+        
+        .linktree-logo:hover {
+            outline: none;
+            animation: outlineAnim 2s infinite;
+        }
+        
+        @keyframes outlineAnim {
+            0% {
+                outline-color: #8C3DA6;
+                outline-width: 0;
+            }
+            50% {
+                outline-color: #00FFFF;
+                outline-width: 10px;
+            }
+            100% {
+                outline-color: #8C3DA6;
+                outline-width: 0;
+            }
+        }
+
+        .footer a {
+            color: rgb(99, 64, 113);
+            text-decoration: none;
+            font-weight: bold;
+            display: table;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    </style>
+    <script>
+        // JavaScript code to dynamically create light particles with random colors
+        document.addEventListener("DOMContentLoaded", function() {
+            const galaxy = document.getElementById("galaxy");
+            const colors = ["#8C3DA6", "#00FFFF"]; // Colors between Lila and Türkis
+            const numParticles = 200;
+            
+            for (let i = 0; i < numParticles; i++) {
+                const lightParticle = document.createElement("div");
+                lightParticle.classList.add("light-particle");
+                lightParticle.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                lightParticle.style.top = Math.random() * 100 + "%";
+                lightParticle.style.left = Math.random() * 100 + "%";
+                lightParticle.style.animationDelay = Math.random() * 5 + "s";
+                galaxy.appendChild(lightParticle);
+            }
+        });
+        
+        // JavaScript code for interaction
+        let visibleCards = [];
+
+        window.addEventListener("scroll", function() {
+            const linktreeCards = document.querySelectorAll(".linktree-card");
+            
+            linktreeCards.forEach(function(card) {
+                if (isElementInViewport(card) && !visibleCards.includes(card)) {
+                    card.classList.add("visible");
+                    visibleCards.push(card);
+                } else if (!isElementInViewport(card) && visibleCards.includes(card)) {
+                    card.classList.remove("visible");
+                    const index = visibleCards.indexOf(card);
+                    visibleCards.splice(index, 1);
+                }
+            });
+        });
+
+        function isElementInViewport(element) {
+            const rect = element.getBoundingClientRect();
+            return (
+                rect.top >= 0 &&
+                rect.left >= 0 &&
+                rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+                rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+            );
+        }
+
+    </script>
+</head>
+<body>
+    <div id="galaxy"></div>
+    
+    <div class="linktree-card">
+        <img class="linktree-logo" src="bilder/instagram.png" alt="Linktree">
+        <h2 class="linktree-name">Instagram</h2>
+        <p class="linktree-description">Instagram von Golden_SBG</p>
+        <div class="linktree-info">
+            <a href="https://instagram.com/golden_sbg">Klick here</a>
+        </div>
+    </div>
+
+    <div class="linktree-card">
+        <img class="linktree-logo" src="bilder/youtube.png" alt="Linktree">
+        <h2 class="linktree-name">Mainchannel</h2>
+        <p class="linktree-description">Hauptkanal von Golden_SBG</p>
+        <div class="linktree-info">
+            <a href="https://www.youtube.com/@golden_sbg">Klick here</a>
+        </div>
+    </div>
+    
+    <div class="linktree-card">
+        <img class="linktree-logo" src="bilder/youtube.png" alt="Linktree">
+        <h2 class="linktree-name">Secondchannel</h2>
+        <p class="linktree-description">Zweitkanal von Golden_SBG</p>
+        <div class="linktree-info">
+            <a href="https://www.youtube.com/@goldigsbg">Klick here</a>
+        </div>
+    </div>
+
+    <div class="linktree-card">
+        <img class="linktree-logo" src="bilder/twitch.png" alt="Linktree">
+        <h2 class="linktree-name">Twitch</h2>
+        <p class="linktree-description">Twitchkanal von Golden_SBG</p>
+        <div class="linktree-info">
+            <a href="https://twitch.tv/golden_sbg">Klick here</a>
+        </div>
+    </div>
+        
+    <div class="linktree-card">
+        <img class="linktree-logo" src="bilder/tiktok.png" alt="Linktree">
+        <h2 class="linktree-name">TikTok</h2>
+        <p class="linktree-description">TikTok-Profil von Golden_SBg</p>
+        <div class="linktree-info">
+            <a href="https://tiktok.com/@golden_sbg">Klick here</a>
+        </div>
+    </div>
+
+    <div class="linktree-card">
+        <img class="linktree-logo" src="bilder/twitter.png" alt="Linktree">
+        <h2 class="linktree-name">Twitter</h2>
+        <p class="linktree-description">Twitter-Profil von Golden_SBg</p>
+        <div class="linktree-info">
+            <a href="https://twitter.com/goldensbg">Klick here</a>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer">
+            <a href="Plattforms.html">Back</a>
+        </div>
+    </footer>
+</body>
+</html>
